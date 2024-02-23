@@ -58,7 +58,7 @@ InstancePtr instance_create()
     sprintf(config_dir, "%s%c%s", config_base_dir, '/', APP_NAME);
     mkdir(config_dir, 0700);
 
-    this->pid_filename = malloc(strlen(config_dir)+13);
+    this->pid_filename = malloc(strlen(config_dir)+14);
     sprintf(this->pid_filename, "%s%s", home_dir, "/.galendaepid");
 
     this->unique = FALSE;
