@@ -51,14 +51,15 @@ InstancePtr instance_create()
 {
     InstancePtr this = malloc(sizeof *this);
 
+    char *home_dir = user_home_dir();
     char *config_base_dir = user_config_dir();
     char *config_dir = malloc(strlen(config_base_dir)+strlen(APP_NAME)+2);
 
     sprintf(config_dir, "%s%c%s", config_base_dir, '/', APP_NAME);
     mkdir(config_dir, 0700);
 
-    this->pid_filename = malloc(strlen(config_dir)+10);
-    sprintf(this->pid_filename, "%s%s", config_dir, "/pid.lock");
+    this->pid_filename = malloc(strlen(config_dir)+13);
+    sprintf(this->pid_filename, "%s%s", home_dir, "/.galendaepid");
 
     this->unique = FALSE;
     this->pid_file = open(this->pid_filename, O_CREAT | O_RDWR, 0666);
